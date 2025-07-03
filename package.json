@@ -12,13 +12,29 @@
   "devDependencies": {
     "@faker-js/faker": "^9.8.0",
     "jest": "^30.0.3",
+    "jest-html-reporter": "^4.3.0",
     "supertest": "^7.1.1"
   },
   "dependencies": {
     "axios": "^1.10.0",
-    "cpf-cnpj-validator": "^1.0.3"
+    "cpf-cnpj-validator": "^1.0.3",
+    "jest-stare": "^2.5.2"
   },
   "jest": {
-    "testTimeout": 10000
+    "testTimeout": 10000,
+    "reporters": [
+      "default",
+      [
+        "jest-stare",
+        {
+          "reportTitle": "Relatório de Testes API - jest-stare",
+          "additionalResultsProcessors": [],
+          "coverageLink": "./coverage/lcov-report/index.html",
+          "resultDir": "evidencias",
+          "jestStareConfigJson": "jest-stare.json",
+          "jestGlobalConfigJson": "jest-global.json"
+        }
+      ]
+    ]
   }
 }

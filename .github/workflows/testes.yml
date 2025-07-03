@@ -1,0 +1,33 @@
+name: Testes Automatizados - API
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout do código
+        uses: actions/checkout@v3
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: 📦 Instalar dependências
+        run: npm install
+
+      - name: 🧪 Rodar testes com Jest
+        run: npm test
+
+      - name: 📤 Salvar relatório jest-stare como artefato
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: relatorio-jest
+          path: evidencias/jest-stare.html

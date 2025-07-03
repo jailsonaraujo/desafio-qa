@@ -32,6 +32,16 @@ npm test
 ```bash
 npx jest testes/retorna_saldo.test.js
 ```
+---
+
+### 📸 Registro de Evidências
+
+As evidências dos testes são salvas automaticamente na pasta `/evidencias/index` onde `index` é  um relatorio com todos os testes executado e detalhados
+
+- Respostas da API (`.json`)
+- Logs de falha (`.log`)
+
+Você pode consultar essas evidências após o `npm test` para verificar os dados reais retornados pela API.
 
 ---
 
@@ -91,3 +101,4 @@ Esses problemas comprometem:
 - A **confiabilidade da aplicação em ambiente real**
 
 🔧 **Recomendação:** Corrigir todas as inconsistências antes do deploy para produção.
+
