@@ -1,0 +1,13 @@
+{
+  "endpointCadastro": "https://points-app-backend.vercel.app/cadastro",
+  "endpointConfirmacaoBase": "https://points-app-backend.vercel.app/confirm-email?token=",
+  "endpointLogin": "https://points-app-backend.vercel.app/login",
+  "endpointEnviarPontos": "https://points-app-backend.vercel.app/points/send",
+  "endpointExcluirConta": "https://points-app-backend.vercel.app/account",
+  "endpointSaldo": "https://points-app-backend.vercel.app/points/saldo",
+  "endpointExtrato": "https://points-app-backend.vercel.app/points/extrato",
+  "endpointDepositaPontos": "https://points-app-backend.vercel.app/caixinha/deposit",
+  "endpointResgataPontos":"https://points-app-backend.vercel.app/caixinha/withdraw",
+  "endpointExtratoCaixinha": "https://points-app-backend.vercel.app/caixinha/extrato",
+  "tokenInvalido": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}

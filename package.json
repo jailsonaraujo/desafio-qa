@@ -1,0 +1,24 @@
+{
+  "name": "api-teste",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@faker-js/faker": "^9.8.0",
+    "jest": "^30.0.3",
+    "supertest": "^7.1.1"
+  },
+  "dependencies": {
+    "axios": "^1.10.0",
+    "cpf-cnpj-validator": "^1.0.3"
+  },
+  "jest": {
+    "testTimeout": 10000
+  }
+}
