@@ -3,13 +3,11 @@ const { lerArquivoJson } = require('../../utils/json');
 const prepararToken = require('../../utils/token');
 
 let config;
-let dadosBase;
-let token; // 🔹 Armazenar o token para reuso
+let token; 
 
 beforeEach(async () => {
     config = lerArquivoJson('BASE.json');
-    dadosBase = lerArquivoJson('login_valido.json');
-    token = await prepararToken(); // 🔹 Gera o token uma única vez antes dos testes
+    token = await prepararToken();
 });
 
 describe('Resgata pontos', () => {

@@ -6,32 +6,33 @@ const { cpf: gerarCpf } = require('cpf-cnpj-validator');
 
 let config;
 let dadosBase;
+let token;
+let destinatario;
 
-beforeAll(() => {
+beforeEach(async () => {
   config = lerArquivoJson('BASE.json');
   dadosBase = lerArquivoJson('login_valido.json');
+
+  token = await prepararToken();
+
+  // Monta o payload do cadastro de usuario
+  destinatario = {
+    ...dadosBase,
+    cpf: gerarCpf.generate(),
+    email: faker.internet.email()
+  };
+
+  await request({
+    method: 'post',
+    url: config.endpointCadastro,
+    payload: destinatario
+  });
+
 });
 
 describe('Enviar pontos', () => {
 
-
   it('deve realizar o envio de pontos para outro usuário com sucesso', async () => {
-    const token = await prepararToken();
-
-    // Usuário destinatário
-    const destinatario = {
-      ...dadosBase,
-      cpf: gerarCpf.generate(),
-      email: faker.internet.email()
-    };
-
-    await request({
-      method: 'post',
-      url: config.endpointCadastro,
-      payload: destinatario
-    });
-
-    // Enviar pontos
     const response = await request({
       method: 'post',
       url: config.endpointEnviarPontos,
@@ -49,21 +50,6 @@ describe('Enviar pontos', () => {
   });
 
   it('deve retornar erro para Token inválido ou expirado', async () => {
-    const token = await prepararToken();
-
-    // Usuário destinatário
-    const destinatario = {
-      ...dadosBase,
-      cpf: gerarCpf.generate(),
-      email: faker.internet.email()
-    };
-
-    await request({
-      method: 'post',
-      url: config.endpointCadastro,
-      payload: destinatario
-    });
-
     // Enviar pontos
     const response = await request({
       method: 'post',
@@ -82,22 +68,6 @@ describe('Enviar pontos', () => {
   });
 
   it('deve retornar erro para saldo insuficiente', async () => {
-    const token = await prepararToken();
-
-    // Usuário destinatário
-    const destinatario = {
-      ...dadosBase,
-      cpf: gerarCpf.generate(),
-      email: faker.internet.email()
-    };
-
-    await request({
-      method: 'post',
-      url: config.endpointCadastro,
-      payload: destinatario
-    });
-
-    // Enviar pontos
     const response = await request({
       method: 'post',
       url: config.endpointEnviarPontos,
@@ -115,22 +85,6 @@ describe('Enviar pontos', () => {
   });
 
   it('deve retornar erro quando usuario recebedor é invalido', async () => {
-    const token = await prepararToken();
-
-    // Usuário destinatário
-    const destinatario = {
-      ...dadosBase,
-      cpf: gerarCpf.generate(),
-      email: faker.internet.email()
-    };
-
-    await request({
-      method: 'post',
-      url: config.endpointCadastro,
-      payload: destinatario
-    });
-
-    // Enviar pontos
     const response = await request({
       method: 'post',
       url: config.endpointEnviarPontos,

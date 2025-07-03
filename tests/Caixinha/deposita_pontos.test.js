@@ -3,12 +3,10 @@ const { lerArquivoJson } = require('../../utils/json');
 const prepararToken = require('../../utils/token');
 
 let config;
-let dadosBase;
 let token;
 
 beforeEach(async () => {
   config = lerArquivoJson('BASE.json');
-  dadosBase = lerArquivoJson('login_valido.json');
   token = await prepararToken();
 });
 

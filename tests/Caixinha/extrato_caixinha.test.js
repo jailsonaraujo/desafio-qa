@@ -4,13 +4,11 @@ const prepararToken = require('../../utils/token');
 
 describe('Enviar pontos', () => {
   let config;
-  let dadosBase;
-  let tokenRemetente;
+  let token;
 
   beforeAll(async () => {
     config = lerArquivoJson('BASE.json');
-    dadosBase = lerArquivoJson('login_valido.json');
-    tokenRemetente = await prepararToken(); // 🔹 Token obtido uma vez
+    token = await prepararToken();
   });
 
   it('deve retornar extrato da caixinha com sucesso', async () => {
@@ -18,7 +16,7 @@ describe('Enviar pontos', () => {
       method: 'post',
       url: config.endpointDepositaPontos,
       headers: {
-        Authorization: `Bearer ${tokenRemetente}`
+        Authorization: `Bearer ${token}`
       },
       payload: {
         amount: 10
@@ -29,7 +27,7 @@ describe('Enviar pontos', () => {
       method: 'get',
       url: config.endpointExtratoCaixinha,
       headers: {
-        Authorization: `Bearer ${tokenRemetente}`
+        Authorization: `Bearer ${token}`
       }
     });
 
@@ -42,7 +40,7 @@ describe('Enviar pontos', () => {
   });
 
   it('deve retornar erro quando Token for inválido ou expirado', async () => {
-    const tokenInvalido = tokenRemetente.slice(1, 15);
+    const tokenInvalido = token.slice(1, 15);
 
     const response = await request({
       method: 'get',
